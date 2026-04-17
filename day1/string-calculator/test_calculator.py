@@ -31,3 +31,8 @@ class TestStringCalculator:
         with pytest.raises(ValueError) as excinfo:
             add("1,-2,3")
         assert "negative" in str(excinfo.value).lower()
+
+    def test_ignore_numbers_greater_than_1000(self):
+        """Numbers greater than 1000 should be ignored"""
+        assert add("2,1001,3") == 5
+        assert add("1000,2,3") == 1005
