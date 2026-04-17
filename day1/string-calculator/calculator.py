@@ -1,5 +1,5 @@
 def add(numbers):
-    """Add numbers from string. Supports comma, newline, and custom delimiters."""
+    """Add numbers from string. Negative numbers raise ValueError."""
     if not numbers:
         return 0
     
@@ -14,4 +14,12 @@ def add(numbers):
     # Normalize newlines to delimiter
     numbers = numbers.replace("\n", delimiter)
     
-    return sum(int(x) for x in numbers.split(delimiter))
+    # Parse and validate numbers
+    num_list = [int(x) for x in numbers.split(delimiter)]
+    
+    # Check for negatives
+    negatives = [x for x in num_list if x < 0]
+    if negatives:
+        raise ValueError(f"negative numbers not allowed: {negatives}")
+    
+    return sum(num_list)
