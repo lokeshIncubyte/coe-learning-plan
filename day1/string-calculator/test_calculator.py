@@ -9,3 +9,7 @@ class TestStringCalculator:
     def test_single_number_returns_value(self):
         """Single number string should return that number"""
         assert add("1") == 1
+
+    def test_two_numbers_returns_sum(self):
+        """Two comma-separated numbers should return their sum"""
+        assert add("1,2") == 3
