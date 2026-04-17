@@ -17,3 +17,7 @@ class TestStringCalculator:
     def test_multiple_numbers_returns_sum(self):
         """Multiple comma-separated numbers should return their sum"""
         assert add("1,2,3,4") == 10
+
+    def test_newline_and_comma_delimiters(self):
+        """Numbers can be separated by newline or comma"""
+        assert add("1\n2,3") == 6
