@@ -21,3 +21,7 @@ class TestStringCalculator:
     def test_newline_and_comma_delimiters(self):
         """Numbers can be separated by newline or comma"""
         assert add("1\n2,3") == 6
+
+    def test_custom_delimiter(self):
+        """Custom delimiter can be specified with //delimiter\\n prefix"""
+        assert add("//;\n1;2") == 3
