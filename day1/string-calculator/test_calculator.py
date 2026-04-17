@@ -25,3 +25,9 @@ class TestStringCalculator:
     def test_custom_delimiter(self):
         """Custom delimiter can be specified with //delimiter\\n prefix"""
         assert add("//;\n1;2") == 3
+
+    def test_negative_numbers_throw_exception(self):
+        """Negative numbers should raise an exception"""
+        with pytest.raises(ValueError) as excinfo:
+            add("1,-2,3")
+        assert "negative" in str(excinfo.value).lower()
