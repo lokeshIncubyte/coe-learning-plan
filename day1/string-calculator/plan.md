@@ -1,26 +1,32 @@
 STRING CALCULATOR KATA — TDD PLAN (LLM-OPTIMIZED)
 
+
+# AGENT INSTRUCTIONS — READ BEFORE EXECUTING ANYTHING
+
+## YOU MUST FOLLOW THESE RULES WITHOUT EXCEPTION
+
+1. **Execute steps in exact order.** Do not skip, reorder, or combine steps.
+2. **Do not write any code not explicitly provided.** Copy it exactly as written.
+3. **Do not anticipate future steps.** Each step is complete as written.
+4. **Do not refactor, optimize, or "improve" any code between steps.**
+5. **Do not proceed to the next step until the current step's expected output is confirmed.**
+6. **If expected output does not match, STOP and report the exact failure. Do not attempt to fix it.**
+7. **Run commands exactly as written, from the exact directory specified.**
+8. **Do not add comments, docstrings, or code beyond what is shown.**
+9. **Commit messages must be copied exactly — do not paraphrase or summarize them.**
+10. **This plan is complete. Do not infer missing steps or fill gaps with your own judgment.**
+
 ---
 
-## TDD WORKFLOW
-
-For each step, follow this exact sequence:
-
-1. **WRITE TEST** → Add test code to test_calculator.py
-2. **RUN TESTS** → `pytest -q` (should FAIL)
-3. **COMMIT RED** → `git add . && git commit -m "RED: <message>"`
-4. **WRITE CODE** → Add implementation to calculator.py
-5. **RUN TESTS** → `pytest -q` (should PASS)
-6. **COMMIT GREEN** → `git add . && git commit -m "GREEN: <message>"`
-7. **REFACTOR** (if needed) → Improve code without changing behavior
-8. **RUN TESTS** → `pytest -q` (should still PASS)
-9. **COMMIT REFACTOR** → `git add . && git commit -m "REFACTOR: <message>"`
+> If you are uncertain about anything, STOP and ask. Do not proceed on assumption.
 
 ---
 
 ## INITIAL SETUP (RUN ONCE)
 
 ### Step 0.1: Create Virtual Environment
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 ```bash
 cd c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator
@@ -31,6 +37,8 @@ pip install pytest
 
 
 ### Step 0.2: Create Initial Files
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: calculator.py**
 ```python
@@ -44,9 +52,11 @@ pip install pytest
 
 ### Step 0.3: First Commit
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "INIT: empty project structure"
+git commit -m "[day1/string-calculator] INIT: empty project structure"
 ```
 
 ---
@@ -54,6 +64,8 @@ git commit -m "INIT: empty project structure"
 ## STEP 1: EMPTY STRING
 
 ### 1.1: WRITE TEST (RED phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: test_calculator.py** - Add this entire content:
 ```python
@@ -68,6 +80,8 @@ class TestStringCalculator:
 
 ### 1.2: RUN TESTS (should FAIL)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -76,14 +90,18 @@ Expected: `1 failed in ...`
 
 ### 1.3: COMMIT RED
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "RED: empty string should return 0"
+git commit -m "[day1/string-calculator] RED: empty string should return 0"
 ```
 
 ---
 
 ### 1.4: WRITE CODE (GREEN phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: calculator.py** - Replace with:
 ```python
@@ -95,6 +113,8 @@ def add(numbers):
 
 ### 1.5: RUN TESTS (should PASS)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -103,9 +123,11 @@ Expected: `1 passed in ...`
 
 ### 1.6: COMMIT GREEN
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "GREEN: return 0 for empty string"
+git commit -m "[day1/string-calculator] GREEN: return 0 for empty string"
 ```
 
 ---
@@ -113,6 +135,8 @@ git commit -m "GREEN: return 0 for empty string"
 ## STEP 2: SINGLE NUMBER
 
 ### 2.1: WRITE TEST (RED phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: test_calculator.py** - Add this test method to the TestStringCalculator class:
 ```python
@@ -123,6 +147,8 @@ git commit -m "GREEN: return 0 for empty string"
 
 ### 2.2: RUN TESTS (should FAIL)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -131,14 +157,18 @@ Expected: `1 failed, 1 passed in ...`
 
 ### 2.3: COMMIT RED
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "RED: single number should return itself"
+git commit -m "[day1/string-calculator] RED: single number should return itself"
 ```
 
 ---
 
 ### 2.4: WRITE CODE (GREEN phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: calculator.py** - Replace with:
 ```python
@@ -151,6 +181,8 @@ def add(numbers):
 
 ### 2.5: RUN TESTS (should PASS)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -159,9 +191,11 @@ Expected: `2 passed in ...`
 
 ### 2.6: COMMIT GREEN
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "GREEN: handle single number"
+git commit -m "[day1/string-calculator] GREEN: handle single number"
 ```
 
 ---
@@ -169,6 +203,8 @@ git commit -m "GREEN: handle single number"
 ## STEP 3: TWO NUMBERS WITH COMMA
 
 ### 3.1: WRITE TEST (RED phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: test_calculator.py** - Add this test method:
 ```python
@@ -179,6 +215,8 @@ git commit -m "GREEN: handle single number"
 
 ### 3.2: RUN TESTS (should FAIL)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -187,14 +225,18 @@ Expected: `1 failed, 2 passed in ...`
 
 ### 3.3: COMMIT RED
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "RED: two numbers should return sum"
+git commit -m "[day1/string-calculator] RED: two numbers should return sum"
 ```
 
 ---
 
 ### 3.4: WRITE CODE (GREEN phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: calculator.py** - Replace with:
 ```python
@@ -209,6 +251,8 @@ def add(numbers):
 
 ### 3.5: RUN TESTS (should PASS)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -217,9 +261,11 @@ Expected: `3 passed in ...`
 
 ### 3.6: COMMIT GREEN
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "GREEN: handle two numbers"
+git commit -m "[day1/string-calculator] GREEN: handle two numbers"
 ```
 
 ---
@@ -227,6 +273,8 @@ git commit -m "GREEN: handle two numbers"
 ## STEP 4: MULTIPLE NUMBERS
 
 ### 4.1: WRITE TEST (RED phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: test_calculator.py** - Add this test method:
 ```python
@@ -237,6 +285,8 @@ git commit -m "GREEN: handle two numbers"
 
 ### 4.2: RUN TESTS (should FAIL)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -245,14 +295,18 @@ Expected: `1 failed, 3 passed in ...`
 
 ### 4.3: COMMIT RED
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "RED: support multiple numbers"
+git commit -m "[day1/string-calculator] RED: support multiple numbers"
 ```
 
 ---
 
 ### 4.4: WRITE CODE (GREEN phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: calculator.py** - Replace with:
 ```python
@@ -265,6 +319,8 @@ def add(numbers):
 
 ### 4.5: RUN TESTS (should PASS)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -273,9 +329,11 @@ Expected: `4 passed in ...`
 
 ### 4.6: COMMIT GREEN
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "GREEN: support multiple numbers"
+git commit -m "[day1/string-calculator] GREEN: support multiple numbers"
 ```
 
 ---
@@ -283,6 +341,8 @@ git commit -m "GREEN: support multiple numbers"
 ## STEP 5: NEWLINE DELIMITER
 
 ### 5.1: WRITE TEST (RED phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: test_calculator.py** - Add this test method:
 ```python
@@ -293,6 +353,8 @@ git commit -m "GREEN: support multiple numbers"
 
 ### 5.2: RUN TESTS (should FAIL)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -301,14 +363,18 @@ Expected: `1 failed, 4 passed in ...`
 
 ### 5.3: COMMIT RED
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "RED: support newline as delimiter"
+git commit -m "[day1/string-calculator] RED: support newline as delimiter"
 ```
 
 ---
 
 ### 5.4: WRITE CODE (GREEN phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: calculator.py** - Replace with:
 ```python
@@ -323,6 +389,8 @@ def add(numbers):
 
 ### 5.5: RUN TESTS (should PASS)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -331,9 +399,11 @@ Expected: `5 passed in ...`
 
 ### 5.6: COMMIT GREEN
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "GREEN: support newline delimiter"
+git commit -m "[day1/string-calculator] GREEN: support newline delimiter"
 ```
 
 ---
@@ -341,6 +411,8 @@ git commit -m "GREEN: support newline delimiter"
 ## STEP 6: CUSTOM DELIMITER
 
 ### 6.1: WRITE TEST (RED phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: test_calculator.py** - Add this test method:
 ```python
@@ -351,6 +423,8 @@ git commit -m "GREEN: support newline delimiter"
 
 ### 6.2: RUN TESTS (should FAIL)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -359,14 +433,18 @@ Expected: `1 failed, 5 passed in ...`
 
 ### 6.3: COMMIT RED
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "RED: support custom delimiter"
+git commit -m "[day1/string-calculator] RED: support custom delimiter"
 ```
 
 ---
 
 ### 6.4: WRITE CODE (GREEN phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: calculator.py** - Replace with:
 ```python
@@ -391,6 +469,8 @@ def add(numbers):
 
 ### 6.5: RUN TESTS (should PASS)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -399,9 +479,11 @@ Expected: `6 passed in ...`
 
 ### 6.6: COMMIT GREEN
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "GREEN: support custom delimiter"
+git commit -m "[day1/string-calculator] GREEN: support custom delimiter"
 ```
 
 ---
@@ -409,6 +491,8 @@ git commit -m "GREEN: support custom delimiter"
 ## STEP 7: NEGATIVE NUMBERS THROW ERROR
 
 ### 7.1: WRITE TEST (RED phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: test_calculator.py** - Add this test method:
 ```python
@@ -421,6 +505,8 @@ git commit -m "GREEN: support custom delimiter"
 
 ### 7.2: RUN TESTS (should FAIL)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -429,14 +515,18 @@ Expected: `1 failed, 6 passed in ...`
 
 ### 7.3: COMMIT RED
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "RED: negative numbers should throw error"
+git commit -m "[day1/string-calculator] RED: negative numbers should throw error"
 ```
 
 ---
 
 ### 7.4: WRITE CODE (GREEN phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: calculator.py** - Replace with:
 ```python
@@ -469,6 +559,8 @@ def add(numbers):
 
 ### 7.5: RUN TESTS (should PASS)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -477,9 +569,11 @@ Expected: `7 passed in ...`
 
 ### 7.6: COMMIT GREEN
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "GREEN: throw error for negative numbers"
+git commit -m "[day1/string-calculator] GREEN: throw error for negative numbers"
 ```
 
 ---
@@ -487,6 +581,8 @@ git commit -m "GREEN: throw error for negative numbers"
 ## STEP 8: IGNORE NUMBERS > 1000
 
 ### 8.1: WRITE TEST (RED phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: test_calculator.py** - Add this test method:
 ```python
@@ -498,6 +594,8 @@ git commit -m "GREEN: throw error for negative numbers"
 
 ### 8.2: RUN TESTS (should FAIL)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -506,14 +604,18 @@ Expected: `1 failed, 7 passed in ...`
 
 ### 8.3: COMMIT RED
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "RED: ignore numbers greater than 1000"
+git commit -m "[day1/string-calculator] RED: ignore numbers greater than 1000"
 ```
 
 ---
 
 ### 8.4: WRITE CODE (GREEN phase)
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 **File: calculator.py** - Replace with:
 ```python
@@ -549,6 +651,8 @@ def add(numbers):
 
 ### 8.5: RUN TESTS (should PASS)
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
 ```bash
 pytest -q
 ```
@@ -557,9 +661,11 @@ Expected: `8 passed in ...`
 
 ### 8.6: COMMIT GREEN
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git add .
-git commit -m "GREEN: ignore numbers greater than 1000"
+git commit -m "[day1/string-calculator] GREEN: ignore numbers greater than 1000"
 ```
 
 ---
@@ -567,6 +673,8 @@ git commit -m "GREEN: ignore numbers greater than 1000"
 ## FINAL VERIFICATION
 
 ### 9.1: Run Full Test Suite
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
 
 ```bash
 pytest -v
@@ -576,6 +684,8 @@ Expected output should show all 8 tests passing.
 
 ### 9.2: View Git Log
 
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
+
 ```bash
 git log --oneline
 ```
@@ -583,6 +693,10 @@ git log --oneline
 Expected: Should show commits for INIT, then RED/GREEN pairs for each step.
 
 ### 9.3: Final Status Check
+
+**Run pytest at:** `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`
+
+**Run git status at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
 
 ```bash
 pytest -q
@@ -594,6 +708,8 @@ Both should be clean (all tests pass, no uncommitted changes).
 ---
 
 ## OPTIONAL: PUSH TO GITHUB
+
+**Run at:** `c:\Users\DELL\Documents\coe-learning-plan` (project root)
 
 If you want to save to GitHub:
 
@@ -609,7 +725,7 @@ Replace `<your-repo-url>` with your actual GitHub repo URL.
 
 ## DEBUGGING CHECKLIST
 
-If tests fail unexpectedly:
+If tests fail unexpectedly (run at `c:\Users\DELL\Documents\coe-learning-plan\day1\string-calculator`):
 
 1. **Check test file syntax**: `python -m py_compile test_calculator.py`
 2. **Check calculator file syntax**: `python -m py_compile calculator.py`
