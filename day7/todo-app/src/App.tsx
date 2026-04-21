@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 import type { FormEvent } from 'react'
 import { TodoForm } from './components/TodoForm'
 import { TodoList } from './components/TodoList'
+import { TodoStats } from './components/TodoStats'
 import { TodoToolbar } from './components/TodoToolbar'
 import { TodoViewProvider, useTodoView } from './context/TodoViewContext'
 import type { Todo } from './types/todo'
@@ -73,6 +74,7 @@ function AppBody() {
     <main>
       <h1>Todo App</h1>
       <TodoToolbar />
+      <TodoStats todos={todos} />
       <TodoForm
         title={title}
         onTitleChange={setTitle}
