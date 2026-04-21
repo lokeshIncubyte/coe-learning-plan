@@ -14,4 +14,19 @@ describe('App', () => {
 
     expect(screen.getByText('Buy milk')).toBeInTheDocument()
   })
+
+  it('marks a todo as completed when its toggle is clicked', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.type(screen.getByRole('textbox', { name: /todo/i }), 'Buy milk')
+    await user.click(screen.getByRole('button', { name: /add todo/i }))
+
+    const todoToggle = screen.getByRole('checkbox', { name: /buy milk/i })
+    expect(todoToggle).not.toBeChecked()
+
+    await user.click(todoToggle)
+
+    expect(todoToggle).toBeChecked()
+  })
 })
