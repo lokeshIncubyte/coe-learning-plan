@@ -29,4 +29,16 @@ describe('App', () => {
 
     expect(todoToggle).toBeChecked()
   })
+
+  it('removes a todo when delete action is clicked', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.type(screen.getByRole('textbox', { name: /todo/i }), 'Buy milk')
+    await user.click(screen.getByRole('button', { name: /add todo/i }))
+
+    await user.click(screen.getByRole('button', { name: /delete buy milk/i }))
+
+    expect(screen.queryByText('Buy milk')).not.toBeInTheDocument()
+  })
 })
