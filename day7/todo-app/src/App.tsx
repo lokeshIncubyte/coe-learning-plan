@@ -71,8 +71,12 @@ function App() {
               />
               {todo.title}
             </label>
-            <button type="button" onClick={() => handleDelete(todo.id)}>
-              Delete {todo.title}
+            <button
+              type="button"
+              aria-label={`Delete ${todo.title}`}
+              onClick={() => handleDelete(todo.id)}
+            >
+              Delete
             </button>
           </li>
         ))}
