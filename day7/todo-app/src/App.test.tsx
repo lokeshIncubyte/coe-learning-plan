@@ -5,6 +5,11 @@ import { describe, expect, it } from 'vitest'
 import App from './App'
 
 describe('App', () => {
+  beforeEach(() => {
+    if (window.localStorage && typeof window.localStorage.clear === 'function') {
+      window.localStorage.clear();
+    }
+  });
   it('adds a todo when user submits non-empty input', async () => {
     const user = userEvent.setup()
     render(<App />)
