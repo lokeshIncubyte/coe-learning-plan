@@ -18,6 +18,9 @@ const toggleTodoById = (todos: Todo[], todoId: string): Todo[] =>
     todo.id === todoId ? { ...todo, completed: !todo.completed } : todo,
   )
 
+const removeTodoById = (todos: Todo[], todoId: string): Todo[] =>
+  todos.filter((todo) => todo.id !== todoId)
+
 function App() {
   const [title, setTitle] = useState('')
   const [todos, setTodos] = useState<Todo[]>([])
@@ -36,6 +39,10 @@ function App() {
 
   const handleToggle = (todoId: string) => {
     setTodos((currentTodos) => toggleTodoById(currentTodos, todoId))
+  }
+
+  const handleDelete = (todoId: string) => {
+    setTodos((currentTodos) => removeTodoById(currentTodos, todoId))
   }
 
   return (
@@ -64,6 +71,9 @@ function App() {
               />
               {todo.title}
             </label>
+            <button type="button" onClick={() => handleDelete(todo.id)}>
+              Delete {todo.title}
+            </button>
           </li>
         ))}
       </ul>
