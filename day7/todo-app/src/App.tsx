@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import type { FormEvent } from 'react'
 import { TodoForm } from './components/TodoForm'
 import { TodoList } from './components/TodoList'
@@ -15,34 +15,46 @@ function AppBody() {
   const { filter, deferredSearch } = useTodoView();
   const { todos, addTodo, toggleTodo, removeTodo, updateTodoTitle } = useTodos();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const trimmedTitle = title.trim();
-    if (!trimmedTitle) return;
-    addTodo(trimmedTitle);
-    setTitle('');
-  };
+  const handleSubmit = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const trimmedTitle = title.trim();
+      if (!trimmedTitle) return;
+      addTodo(trimmedTitle);
+      setTitle('');
+    },
+    [addTodo, title]
+  );
 
-  const handleToggle = (todoId: string) => {
-    toggleTodo(todoId);
-  };
+  const handleToggle = useCallback(
+    (todoId: string) => {
+      toggleTodo(todoId);
+    },
+    [toggleTodo]
+  );
 
-  const handleDelete = (todoId: string) => {
-    removeTodo(todoId);
-  };
+  const handleDelete = useCallback(
+    (todoId: string) => {
+      removeTodo(todoId);
+    },
+    [removeTodo]
+  );
 
-  const handleStartEdit = (todo: Todo) => {
+  const handleStartEdit = useCallback((todo: Todo) => {
     setEditingTodoId(todo.id);
     setEditingTitle(todo.title);
-  };
+  }, []);
 
-  const handleSaveEdit = (todoId: string) => {
-    const trimmedTitle = editingTitle.trim();
-    if (!trimmedTitle) return;
-    updateTodoTitle(todoId, trimmedTitle);
-    setEditingTodoId(null);
-    setEditingTitle('');
-  };
+  const handleSaveEdit = useCallback(
+    (todoId: string) => {
+      const trimmedTitle = editingTitle.trim();
+      if (!trimmedTitle) return;
+      updateTodoTitle(todoId, trimmedTitle);
+      setEditingTodoId(null);
+      setEditingTitle('');
+    },
+    [editingTitle, updateTodoTitle]
+  );
 
   const visibleTodos = useMemo(() => {
     const normalizedSearch = deferredSearch.trim().toLowerCase();
