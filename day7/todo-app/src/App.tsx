@@ -24,6 +24,8 @@ const removeTodoById = (todos: Todo[], todoId: string): Todo[] =>
 function App() {
   const [title, setTitle] = useState('')
   const [todos, setTodos] = useState<Todo[]>([])
+  const [editingTodoId, setEditingTodoId] = useState<string | null>(null)
+  const [editingTitle, setEditingTitle] = useState('')
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -45,6 +47,26 @@ function App() {
     setTodos((currentTodos) => removeTodoById(currentTodos, todoId))
   }
 
+  const handleStartEdit = (todo: Todo) => {
+    setEditingTodoId(todo.id)
+    setEditingTitle(todo.title)
+  }
+
+  const handleSaveEdit = (todoId: string) => {
+    const trimmedTitle = editingTitle.trim()
+    if (!trimmedTitle) {
+      return
+    }
+
+    setTodos((currentTodos) =>
+      currentTodos.map((todo) =>
+        todo.id === todoId ? { ...todo, title: trimmedTitle } : todo,
+      ),
+    )
+    setEditingTodoId(null)
+    setEditingTitle('')
+  }
+
   return (
     <main>
       <h1>Todo App</h1>
@@ -63,21 +85,47 @@ function App() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => handleToggle(todo.id)}
-              />
-              {todo.title}
-            </label>
-            <button
-              type="button"
-              aria-label={`Delete ${todo.title}`}
-              onClick={() => handleDelete(todo.id)}
-            >
-              Delete
-            </button>
+            {editingTodoId === todo.id ? (
+              <>
+                <input
+                  aria-label={`Edit ${todo.title}`}
+                  value={editingTitle}
+                  onChange={(event) => setEditingTitle(event.target.value)}
+                />
+                <button
+                  type="button"
+                  aria-label={`Save ${todo.title}`}
+                  onClick={() => handleSaveEdit(todo.id)}
+                >
+                  Save
+                </button>
+              </>
+            ) : (
+              <>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={todo.completed}
+                    onChange={() => handleToggle(todo.id)}
+                  />
+                  {todo.title}
+                </label>
+                <button
+                  type="button"
+                  aria-label={`Edit ${todo.title}`}
+                  onClick={() => handleStartEdit(todo)}
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  aria-label={`Delete ${todo.title}`}
+                  onClick={() => handleDelete(todo.id)}
+                >
+                  Delete
+                </button>
+              </>
+            )}
           </li>
         ))}
       </ul>
