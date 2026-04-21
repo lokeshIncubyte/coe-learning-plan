@@ -64,4 +64,17 @@ describe('App', () => {
     expect(screen.queryByText('Buy milk')).not.toBeInTheDocument()
     expect(screen.getByText('Buy oat milk')).toBeInTheDocument()
   })
+
+  it('restores todos from localStorage on mount (RED)', () => {
+    // Arrange: manually set localStorage before rendering
+    window.localStorage.setItem('todos', JSON.stringify([
+      { id: '1', title: 'Persisted todo', completed: false }
+    ]));
+
+    // Act: render the app
+    render(<App />);
+
+    // Assert: the persisted todo should appear
+    expect(screen.getByText('Persisted todo')).toBeInTheDocument();
+  });
 })
