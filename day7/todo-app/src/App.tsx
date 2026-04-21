@@ -1,8 +1,13 @@
 import { FormEvent, useState } from 'react'
 
+type Todo = {
+  id: string
+  title: string
+}
+
 function App() {
   const [title, setTitle] = useState('')
-  const [todos, setTodos] = useState<string[]>([])
+  const [todos, setTodos] = useState<Todo[]>([])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -12,7 +17,10 @@ function App() {
       return
     }
 
-    setTodos((currentTodos) => [...currentTodos, trimmedTitle])
+    setTodos((currentTodos) => [
+      ...currentTodos,
+      { id: crypto.randomUUID(), title: trimmedTitle },
+    ])
     setTitle('')
   }
 
@@ -33,7 +41,7 @@ function App() {
 
       <ul>
         {todos.map((todo) => (
-          <li key={todo}>{todo}</li>
+          <li key={todo.id}>{todo.title}</li>
         ))}
       </ul>
     </main>
