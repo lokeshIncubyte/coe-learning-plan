@@ -10,6 +10,38 @@ describe('App', () => {
       window.localStorage.clear();
     }
   });
+
+  it('filters todos by completed/active and search query (RED)', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    // Add multiple todos
+    await user.type(screen.getByRole('textbox', { name: /todo/i }), 'Buy milk');
+    await user.click(screen.getByRole('button', { name: /add todo/i }));
+    await user.type(screen.getByRole('textbox', { name: /todo/i }), 'Read book');
+    await user.click(screen.getByRole('button', { name: /add todo/i }));
+    await user.type(screen.getByRole('textbox', { name: /todo/i }), 'Write code');
+    await user.click(screen.getByRole('button', { name: /add todo/i }));
+
+    // Mark 'Read book' as completed
+    await user.click(screen.getByRole('checkbox', { name: /read book/i }));
+
+    // Simulate filter to show only completed
+    // (Assume a button or control exists for this in the future UI)
+    // e.g., await user.click(screen.getByRole('button', { name: /completed/i }));
+
+    // For now, this will fail until the filter UI is implemented
+    expect(screen.queryByText('Buy milk')).not.toBeInTheDocument();
+    expect(screen.queryByText('Write code')).not.toBeInTheDocument();
+    expect(screen.getByText('Read book')).toBeInTheDocument();
+
+    // Simulate search for 'code'
+    // e.g., await user.type(screen.getByRole('textbox', { name: /search/i }), 'code');
+    // For now, this will fail until the search UI is implemented
+    expect(screen.getByText('Write code')).toBeInTheDocument();
+    expect(screen.queryByText('Buy milk')).not.toBeInTheDocument();
+    expect(screen.queryByText('Read book')).not.toBeInTheDocument();
+  });
   it('adds a todo when user submits non-empty input', async () => {
     const user = userEvent.setup()
     render(<App />)
