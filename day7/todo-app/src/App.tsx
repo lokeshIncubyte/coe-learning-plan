@@ -3,54 +3,43 @@ import type { FormEvent } from 'react'
 import { TodoForm } from './components/TodoForm'
 import { TodoList } from './components/TodoList'
 import type { Todo } from './types/todo'
-import {
-  createTodo,
-  removeTodoById,
-  toggleTodoById,
-  updateTodoTitleById,
-} from './utils/todoHelpers'
+import { useTodos } from './hooks/useTodos'
+
 
 function App() {
-  const [title, setTitle] = useState('')
-  const [todos, setTodos] = useState<Todo[]>([])
-  const [editingTodoId, setEditingTodoId] = useState<string | null>(null)
-  const [editingTitle, setEditingTitle] = useState('')
+  const [title, setTitle] = useState('');
+  const [editingTodoId, setEditingTodoId] = useState<string | null>(null);
+  const [editingTitle, setEditingTitle] = useState('');
+  const { todos, addTodo, toggleTodo, removeTodo, updateTodoTitle } = useTodos();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    const trimmedTitle = title.trim()
-    if (!trimmedTitle) {
-      return
-    }
-
-    setTodos((currentTodos) => [...currentTodos, createTodo(trimmedTitle)])
-    setTitle('')
-  }
+    event.preventDefault();
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) return;
+    addTodo(trimmedTitle);
+    setTitle('');
+  };
 
   const handleToggle = (todoId: string) => {
-    setTodos((currentTodos) => toggleTodoById(currentTodos, todoId))
-  }
+    toggleTodo(todoId);
+  };
 
   const handleDelete = (todoId: string) => {
-    setTodos((currentTodos) => removeTodoById(currentTodos, todoId))
-  }
+    removeTodo(todoId);
+  };
 
   const handleStartEdit = (todo: Todo) => {
-    setEditingTodoId(todo.id)
-    setEditingTitle(todo.title)
-  }
+    setEditingTodoId(todo.id);
+    setEditingTitle(todo.title);
+  };
 
   const handleSaveEdit = (todoId: string) => {
-    const trimmedTitle = editingTitle.trim()
-    if (!trimmedTitle) {
-      return
-    }
-
-    setTodos((currentTodos) => updateTodoTitleById(currentTodos, todoId, trimmedTitle))
-    setEditingTodoId(null)
-    setEditingTitle('')
-  }
+    const trimmedTitle = editingTitle.trim();
+    if (!trimmedTitle) return;
+    updateTodoTitle(todoId, trimmedTitle);
+    setEditingTodoId(null);
+    setEditingTitle('');
+  };
 
   return (
     <main>
@@ -71,7 +60,7 @@ function App() {
         onSaveEdit={handleSaveEdit}
       />
     </main>
-  )
+  );
 }
 
 export default App
