@@ -7,6 +7,17 @@ type Todo = {
   completed: boolean
 }
 
+const createTodo = (title: string): Todo => ({
+  id: crypto.randomUUID(),
+  title,
+  completed: false,
+})
+
+const toggleTodoById = (todos: Todo[], todoId: string): Todo[] =>
+  todos.map((todo) =>
+    todo.id === todoId ? { ...todo, completed: !todo.completed } : todo,
+  )
+
 function App() {
   const [title, setTitle] = useState('')
   const [todos, setTodos] = useState<Todo[]>([])
@@ -19,19 +30,12 @@ function App() {
       return
     }
 
-    setTodos((currentTodos) => [
-      ...currentTodos,
-      { id: crypto.randomUUID(), title: trimmedTitle, completed: false },
-    ])
+    setTodos((currentTodos) => [...currentTodos, createTodo(trimmedTitle)])
     setTitle('')
   }
 
   const handleToggle = (todoId: string) => {
-    setTodos((currentTodos) =>
-      currentTodos.map((todo) =>
-        todo.id === todoId ? { ...todo, completed: !todo.completed } : todo,
-      ),
-    )
+    setTodos((currentTodos) => toggleTodoById(currentTodos, todoId))
   }
 
   return (
