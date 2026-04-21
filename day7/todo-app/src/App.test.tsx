@@ -41,4 +41,22 @@ describe('App', () => {
 
     expect(screen.queryByText('Buy milk')).not.toBeInTheDocument()
   })
+
+  it('edits a todo title when edit and save actions are used', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.type(screen.getByRole('textbox', { name: /todo/i }), 'Buy milk')
+    await user.click(screen.getByRole('button', { name: /add todo/i }))
+
+    await user.click(screen.getByRole('button', { name: /edit buy milk/i }))
+
+    const editInput = screen.getByRole('textbox', { name: /edit buy milk/i })
+    await user.clear(editInput)
+    await user.type(editInput, 'Buy oat milk')
+    await user.click(screen.getByRole('button', { name: /save buy milk/i }))
+
+    expect(screen.queryByText('Buy milk')).not.toBeInTheDocument()
+    expect(screen.getByText('Buy oat milk')).toBeInTheDocument()
+  })
 })
