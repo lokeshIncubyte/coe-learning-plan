@@ -1,48 +1,12 @@
 # COE Learning Plan
 
-This repository contains learning exercises, notes, and kata implementations.
+Learning repo for daily software craftsmanship exercises.
 
-## Prerequisites
+## Structure
 
-- Python 3.11 or newer
-- `venv` (included with standard Python installations)
+- `day1`: notes and kata practice
+- `day7/todo-app`: React + TypeScript Todo app (Vite)
 
-## Verify Python Version
+## How To Use
 
-From the repository root, run:
-
-```powershell
-python --version
-```
-
-You should see Python 3.11+.
-
-## Create a Virtual Environment
-
-From the repository root:
-
-```powershell
-python -m venv .venv
-```
-
-## Activate the Virtual Environment
-
-On Windows PowerShell:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-On Windows Command Prompt:
-
-```bat
-.\.venv\Scripts\activate.bat
-```
-
-## Deactivate When Done
-
-```powershell
-deactivate
-```
-
-For exercise-specific dependencies and run instructions, check the README inside each project folder (for example `day1/string-calculator`).
+- Open the README inside each day/project folder for exact run steps.
