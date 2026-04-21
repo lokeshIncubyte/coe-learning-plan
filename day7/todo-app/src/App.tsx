@@ -1,8 +1,10 @@
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 
 type Todo = {
   id: string
   title: string
+  completed: boolean
 }
 
 function App() {
@@ -19,9 +21,17 @@ function App() {
 
     setTodos((currentTodos) => [
       ...currentTodos,
-      { id: crypto.randomUUID(), title: trimmedTitle },
+      { id: crypto.randomUUID(), title: trimmedTitle, completed: false },
     ])
     setTitle('')
+  }
+
+  const handleToggle = (todoId: string) => {
+    setTodos((currentTodos) =>
+      currentTodos.map((todo) =>
+        todo.id === todoId ? { ...todo, completed: !todo.completed } : todo,
+      ),
+    )
   }
 
   return (
@@ -41,7 +51,16 @@ function App() {
 
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.title}</li>
+          <li key={todo.id}>
+            <label>
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => handleToggle(todo.id)}
+              />
+              {todo.title}
+            </label>
+          </li>
         ))}
       </ul>
     </main>
